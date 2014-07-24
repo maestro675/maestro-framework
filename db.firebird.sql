@@ -1,0 +1,1211 @@
+
+/****************** GENERATORS ********************/
+
+CREATE GENERATOR GEN_BU_ITEMS_ID;
+CREATE GENERATOR GEN_ITEMS_ID;
+CREATE GENERATOR GEN_OBJECTS_ID;
+CREATE GENERATOR GEN_PROPFIELD_ID;
+/******************** DOMAINS *********************/
+
+CREATE DOMAIN ACNAME AS VARCHAR(32) COLLATE UTF8;
+CREATE DOMAIN BGNAME AS VARCHAR(192) COLLATE UTF8;
+CREATE DOMAIN MDNAME AS VARCHAR(64) COLLATE UTF8;
+CREATE DOMAIN NANKCHARS AS CHAR(4) COLLATE UTF8;
+CREATE DOMAIN NANKMASK AS VARCHAR(4) COLLATE UTF8;
+CREATE DOMAIN OBCODE AS VARCHAR(12) COLLATE UTF8;
+CREATE DOMAIN SMNAME AS VARCHAR(24) COLLATE UTF8;
+CREATE DOMAIN TBINARY AS BLOB SUB_TYPE 0;
+CREATE DOMAIN TBOOLEAN AS SMALLINT DEFAULT 0 NOT NULL CHECK (value between 0 and 1);
+CREATE DOMAIN TCODE AS VARCHAR(12) COLLATE UTF8;
+CREATE DOMAIN TDATE AS DATE;
+CREATE DOMAIN TDATETIME AS TIMESTAMP;
+CREATE DOMAIN TFIELDCODE AS VARCHAR(40) NOT NULL COLLATE UTF8;
+CREATE DOMAIN TFKID AS INTEGER NOT NULL;
+CREATE DOMAIN TFLOAT AS DOUBLE PRECISION DEFAULT 0;
+CREATE DOMAIN TGID AS INTEGER DEFAULT 0 NOT NULL;
+CREATE DOMAIN THASH AS VARCHAR(32) NOT NULL COLLATE UTF8;
+CREATE DOMAIN TINTEGER AS INTEGER DEFAULT 0;
+CREATE DOMAIN TIP AS VARCHAR(15) COLLATE UTF8;
+CREATE DOMAIN TLARGENAME AS VARCHAR(255) COLLATE UTF8;
+CREATE DOMAIN TLOGGEDDATE AS TIMESTAMP DEFAULT current_timestamp NOT NULL;
+CREATE DOMAIN TOID AS INTEGER NOT NULL;
+CREATE DOMAIN TPKID AS INTEGER NOT NULL;
+CREATE DOMAIN TREFFERCODE AS VARCHAR(40) COLLATE UTF8;
+CREATE DOMAIN TROLE AS VARCHAR(12) DEFAULT '' NOT NULL COLLATE UTF8;
+CREATE DOMAIN TSHORTINT AS SMALLINT DEFAULT 0;
+CREATE DOMAIN TSTANDARTNAME AS VARCHAR(80) COLLATE UTF8;
+CREATE DOMAIN TTEXT AS BLOB SUB_TYPE 1 COLLATE UTF8;
+CREATE DOMAIN TTIME AS TIME;
+CREATE DOMAIN TUID AS INTEGER DEFAULT 0 NOT NULL;
+
+/******************* PROCEDURES ******************/
+
+SET TERM ^ ;
+CREATE PROCEDURE GET_CHILDS (
+    NODEID INTEGER,
+    CLASSID INTEGER )
+RETURNS (
+    ID INTEGER,
+    NODE_LEVEL INTEGER )
+AS
+BEGIN SUSPEND; END^
+SET TERM ; ^
+
+SET TERM ^ ;
+CREATE PROCEDURE GET_PARENTS (
+    NODEID INTEGER,
+    CLASSID INTEGER )
+RETURNS (
+    ID INTEGER,
+    NODE_LEVEL INTEGER )
+AS
+BEGIN SUSPEND; END^
+SET TERM ; ^
+
+SET TERM ^ ;
+CREATE PROCEDURE GET_PROPFIELDS (
+    CLASSID INTEGER )
+RETURNS (
+    FIELDID INTEGER,
+    OWNERID INTEGER,
+    FIELDNAME VARCHAR(40),
+    PRTABLE VARCHAR(40),
+    PRNAME VARCHAR(40),
+    TYPEID INTEGER,
+    TYPECODE VARCHAR(12),
+    DESCRIPT VARCHAR(255),
+    WIDTH INTEGER,
+    SCALE INTEGER,
+    FLAG INTEGER,
+    ENABLED SMALLINT,
+    PARENTLEVEL SMALLINT )
+AS
+BEGIN SUSPEND; END^
+SET TERM ; ^
+
+SET TERM ^ ;
+CREATE PROCEDURE LINKS_IU (
+    LINKTYPEID INTEGER,
+    LEFTID INTEGER,
+    RIGHTID INTEGER )
+RETURNS (
+    OUTRES SMALLINT )
+AS
+BEGIN SUSPEND; END^
+SET TERM ; ^
+
+SET TERM ^ ;
+CREATE PROCEDURE OBJECTS_IU (
+    OBID INTEGER,
+    CLASSID INTEGER,
+    PARENTID INTEGER,
+    CODE VARCHAR(12),
+    PROPID INTEGER,
+    NAME VARCHAR(192),
+    CREATORID INTEGER,
+    CHANGERID INTEGER )
+RETURNS (
+    OUTID INTEGER )
+AS
+BEGIN SUSPEND; END^
+SET TERM ; ^
+
+SET TERM ^ ;
+CREATE PROCEDURE PROPFIELDS_IU (
+    FIELDID INTEGER,
+    CLASSID INTEGER,
+    FIELDNAME VARCHAR(40),
+    PRTABLE VARCHAR(40),
+    PRNAME VARCHAR(40),
+    TYPEID INTEGER,
+    DESCRIPT VARCHAR(255),
+    WIDTH INTEGER,
+    SCALE INTEGER,
+    FLAG INTEGER,
+    ENABLED SMALLINT,
+    USERID INTEGER )
+RETURNS (
+    OUTID INTEGER )
+AS
+BEGIN SUSPEND; END^
+SET TERM ; ^
+
+SET TERM ^ ;
+CREATE PROCEDURE PROPITEMS_IU (
+    SETID INTEGER,
+    VAL INTEGER,
+    NAME VARCHAR(64) )
+AS
+BEGIN SUSPEND; END^
+SET TERM ; ^
+
+SET TERM ^ ;
+CREATE PROCEDURE REQ_OBJECT_BY_CODE (
+    CLASSID INTEGER,
+    PARENTID INTEGER,
+    CODE VARCHAR(12),
+    NAME VARCHAR(192),
+    PROPID INTEGER,
+    CREATORID INTEGER,
+    CHANGERID INTEGER )
+RETURNS (
+    OUTID INTEGER )
+AS
+BEGIN SUSPEND; END^
+SET TERM ; ^
+
+SET TERM ^ ;
+CREATE PROCEDURE SET_PROPVAL_DBL (
+    OBID INTEGER,
+    FIELDID INTEGER,
+    VAL DOUBLE PRECISION,
+    USERID INTEGER )
+RETURNS (
+    OUTRES SMALLINT )
+AS
+BEGIN SUSPEND; END^
+SET TERM ; ^
+
+SET TERM ^ ;
+CREATE PROCEDURE SET_PROPVAL_INT (
+    OBID INTEGER,
+    FIELDID INTEGER,
+    VAL INTEGER,
+    USERID INTEGER )
+RETURNS (
+    OUTRES SMALLINT )
+AS
+BEGIN SUSPEND; END^
+SET TERM ; ^
+
+SET TERM ^ ;
+CREATE PROCEDURE SET_PROPVAL_PTR (
+    OBID INTEGER,
+    FIELDID INTEGER,
+    VAL INTEGER,
+    USERID INTEGER )
+RETURNS (
+    OUTRES SMALLINT )
+AS
+BEGIN SUSPEND; END^
+SET TERM ; ^
+
+SET TERM ^ ;
+CREATE PROCEDURE SET_PROPVAL_STR (
+    OBID INTEGER,
+    FIELDID INTEGER,
+    VAL VARCHAR(255),
+    USERID INTEGER )
+RETURNS (
+    OUTRES SMALLINT )
+AS
+BEGIN SUSPEND; END^
+SET TERM ; ^
+
+SET TERM ^ ;
+CREATE PROCEDURE SET_PROPVAL_TIME (
+    OBID INTEGER,
+    FIELDID INTEGER,
+    VAL TIMESTAMP,
+    USERID INTEGER )
+RETURNS (
+    OUTRES SMALLINT )
+AS
+BEGIN SUSPEND; END^
+SET TERM ; ^
+
+SET TERM ^ ;
+CREATE PROCEDURE SET_PROPVAL_TXT (
+    OBID INTEGER,
+    FIELDID INTEGER,
+    VAL BLOB SUB_TYPE 0,
+    USERID INTEGER )
+RETURNS (
+    OUTRES SMALLINT )
+AS
+BEGIN SUSPEND; END^
+SET TERM ; ^
+
+SET TERM ^ ;
+CREATE PROCEDURE SET_RIGHT (
+    OBJECTID INTEGER,
+    SOMEID INTEGER,
+    RTYPE CHAR(1),
+    RVALUE SMALLINT )
+RETURNS (
+    OUTRES INTEGER )
+AS
+BEGIN SUSPEND; END^
+SET TERM ; ^
+
+SET TERM ^ ;
+CREATE PROCEDURE SET_RIGHTS_ACL (
+    OBJECTID INTEGER,
+    SUBJECTID INTEGER,
+    WITH_ROLE VARCHAR(12),
+    MASK INTEGER,
+    CHANGER INTEGER )
+AS
+BEGIN SUSPEND; END^
+SET TERM ; ^
+
+SET TERM ^ ;
+CREATE PROCEDURE TREE_OBJECTS (
+    ROOTID INTEGER,
+    INLEVEL INTEGER,
+    CLASSID INTEGER )
+RETURNS (
+    OBID INTEGER,
+    LVL INTEGER )
+AS
+BEGIN SUSPEND; END^
+SET TERM ; ^
+
+SET TERM ^ ;
+CREATE PROCEDURE TREE_PARENTS (
+    ROOTID INTEGER,
+    INLEVEL INTEGER,
+    CLASSID INTEGER )
+RETURNS (
+    OBID INTEGER,
+    LVL INTEGER )
+AS
+BEGIN SUSPEND; END^
+SET TERM ; ^
+
+/******************** TABLES **********************/
+
+CREATE TABLE LINKS
+(
+  LINKTYPEID TOID NOT NULL,
+  LEFTID TOID NOT NULL,
+  RIGHTID TOID NOT NULL,
+  CONSTRAINT PK_LINKS PRIMARY KEY (LINKTYPEID,LEFTID,RIGHTID)
+);
+CREATE TABLE OBJECTS
+(
+  OBID TOID NOT NULL,
+  CLASSID TOID DEFAULT -1,
+  PARENTID TOID DEFAULT -1 NOT NULL,
+  CODE OBCODE,
+  PROPID INTEGER,
+  NAME TLARGENAME,
+  DELETED TBOOLEAN NOT NULL,
+  CREATE_DATE TLOGGEDDATE,
+  CREATORID TUID,
+  CHANGE_DATE TLOGGEDDATE,
+  CHANGERID TUID,
+  DIVISION INTEGER,
+  CONSTRAINT PK_OBJECTS PRIMARY KEY (OBID)
+);
+CREATE TABLE PROPFIELDS
+(
+  FIELDID TPKID,
+  CLASSID TPKID,
+  FIELDNAME TFIELDCODE,
+  PRTABLE TREFFERCODE COLLATE UTF8,
+  PRNAME TREFFERCODE,
+  TYPEID TFKID,
+  DESCRIPT TLARGENAME,
+  WIDTH TINTEGER,
+  SCALE TINTEGER,
+  FLAG TINTEGER NOT NULL,
+  ENABLED TBOOLEAN,
+  CREATED TLOGGEDDATE,
+  CREATORID TUID,
+  CHANGED TLOGGEDDATE,
+  CHANGERID TUID,
+  CONSTRAINT PK_PROPFIELDS PRIMARY KEY (FIELDID)
+);
+CREATE TABLE PROPITEMS
+(
+  SETID TINTEGER NOT NULL,
+  VAL TINTEGER NOT NULL,
+  NAME MDNAME NOT NULL,
+  CONSTRAINT PK_PROPITEMS PRIMARY KEY (SETID,VAL)
+);
+CREATE TABLE PROPTYPES
+(
+  TYPEID TPKID NOT NULL,
+  TYPECODE OBCODE,
+  TYPENAME MDNAME,
+  CREATED TLOGGEDDATE,
+  CREATORID TUID,
+  CHANGED TLOGGEDDATE,
+  CHANGERID TUID,
+  CONSTRAINT PK_PROPTYPES PRIMARY KEY (TYPEID)
+);
+CREATE TABLE PROPVAL_DBL
+(
+  OBID TOID NOT NULL,
+  FIELDID TFKID NOT NULL,
+  VAL TFLOAT,
+  CREATE_DATE TLOGGEDDATE,
+  CREATORID TUID,
+  CHANGE_DATE TLOGGEDDATE,
+  CHANGERID TUID,
+  CONSTRAINT INTEG_136 PRIMARY KEY (OBID,FIELDID)
+);
+CREATE TABLE PROPVAL_INT
+(
+  OBID TOID NOT NULL,
+  FIELDID TFKID NOT NULL,
+  VAL TINTEGER,
+  CREATE_DATE TLOGGEDDATE,
+  CREATORID TUID,
+  CHANGE_DATE TLOGGEDDATE,
+  CHANGERID TUID,
+  CONSTRAINT INTEG_132 PRIMARY KEY (OBID,FIELDID)
+);
+CREATE TABLE PROPVAL_PTR
+(
+  OBID TOID NOT NULL,
+  FIELDID TFKID NOT NULL,
+  VAL TOID NOT NULL,
+  CREATE_DATE TLOGGEDDATE,
+  CREATORID TUID,
+  CHANGE_DATE TLOGGEDDATE,
+  CHANGERID TUID,
+  CONSTRAINT INTEG_140 PRIMARY KEY (OBID,FIELDID)
+);
+CREATE TABLE PROPVAL_STR
+(
+  OBID TOID NOT NULL,
+  FIELDID TFKID NOT NULL,
+  VAL TLARGENAME,
+  CREATE_DATE TLOGGEDDATE,
+  CREATORID TUID,
+  CHANGE_DATE TLOGGEDDATE,
+  CHANGERID TUID,
+  CONSTRAINT INTEG_134 PRIMARY KEY (OBID,FIELDID)
+);
+CREATE TABLE PROPVAL_TIME
+(
+  OBID TOID NOT NULL,
+  FIELDID TFKID NOT NULL,
+  VAL TIMESTAMP,
+  CREATE_DATE TLOGGEDDATE DEFAULT current_timestamp,
+  CREATORID TUID DEFAULT 0,
+  CHANGE_DATE TLOGGEDDATE DEFAULT current_timestamp,
+  CHANGERID TUID DEFAULT 0,
+  CONSTRAINT INTEG_108 PRIMARY KEY (OBID,FIELDID)
+);
+CREATE TABLE PROPVAL_TXT
+(
+  OBID TOID NOT NULL,
+  FIELDID TFKID NOT NULL,
+  VAL TTEXT,
+  CREATE_DATE TLOGGEDDATE,
+  CREATORID TUID,
+  CHANGE_DATE TLOGGEDDATE,
+  CHANGERID TUID,
+  CONSTRAINT INTEG_135 PRIMARY KEY (OBID,FIELDID)
+);
+/********************* VIEWS **********************/
+CREATE VIEW CLASSES (OBID, CLASSID, PARENTID, CODE, NAME, CHANGE_DATE, 
+    ORDERBYFIELDS, PARENTFIELDS, SORTIDX, CALL_ON_SUBMIT, TARGET_BASE, PROC_IU)
+AS  
+select
+  O.OBID,
+  O.CLASSID,
+  O.PARENTID,
+  O.CODE,
+  O.NAME,
+  O.CHANGE_DATE,
+  v0.VAL as ORDERBYFIELDS,
+  v1.VAL as PARENTFIELDS,
+  v2.VAL as SORTIDX,
+  v3.VAL as CALL_ON_SUBMIT,
+  v4.VAL as TARGET_BASE,
+  v5.VAL as PROC_IU
+from OBJECTS O
+left join PROPVAL_STR v0 on v0.OBID=O.OBID and v0.FIELDID=100
+left join PROPVAL_STR v1 on v1.OBID=O.OBID and v1.FIELDID=103
+left join PROPVAL_INT v2 on v2.OBID=O.OBID and v2.FIELDID=106
+left join PROPVAL_STR v3 on v3.OBID=O.OBID and v3.FIELDID=167
+left join PROPVAL_STR v4 on v4.OBID=O.OBID and v4.FIELDID=177
+left join PROPVAL_STR v5 on v5.OBID=O.OBID and v5.FIELDID=191
+where O.CLASSID=-10
+;
+/******************* EXCEPTIONS *******************/
+
+CREATE EXCEPTION OBJECT_DELETE_EXCEPTION
+'You can''t delete this object!';
+/******************** TRIGGERS ********************/
+
+SET TERM ^ ;
+CREATE TRIGGER OBJECTS_BD0 FOR OBJECTS ACTIVE
+BEFORE DELETE POSITION 0
+AS
+begin
+ if (old.DELETED=0) then
+ exception OBJECT_DELETE_EXCEPTION;
+end^
+SET TERM ; ^
+SET TERM ^ ;
+CREATE TRIGGER OBJECTS_BI FOR OBJECTS ACTIVE
+BEFORE INSERT POSITION 0
+AS
+BEGIN
+  IF (NEW.OBID IS NULL) THEN
+    NEW.OBID = GEN_ID(GEN_OBJECTS_ID,1);
+END^
+SET TERM ; ^
+SET TERM ^ ;
+CREATE TRIGGER OBJECTS_BU0 FOR OBJECTS ACTIVE
+BEFORE UPDATE POSITION 0
+AS
+begin
+    --if(NEW.CHANGE_DATE is null) then
+    NEW.CHANGE_DATE = CURRENT_TIMESTAMP;
+end^
+SET TERM ; ^
+SET TERM ^ ;
+CREATE TRIGGER PROPFIELDS_AD0 FOR PROPFIELDS ACTIVE
+AFTER DELETE POSITION 0
+AS
+begin
+  delete from PROPVAL_DBL where FIELDID=old.FIELDID;
+  delete from PROPVAL_INT where FIELDID=old.FIELDID;
+  delete from PROPVAL_PTR where FIELDID=old.FIELDID;
+  delete from PROPVAL_STR where FIELDID=old.FIELDID;
+  delete from PROPVAL_TXT where FIELDID=old.FIELDID;
+end^
+SET TERM ; ^
+SET TERM ^ ;
+CREATE TRIGGER PROPFIELDS_BI FOR PROPFIELDS ACTIVE
+BEFORE INSERT POSITION 0
+AS
+BEGIN
+  IF (NEW.FIELDID IS NULL) THEN
+    NEW.FIELDID = GEN_ID(GEN_PROPFIELD_ID,1);
+END^
+SET TERM ; ^
+SET TERM ^ ;
+CREATE TRIGGER PROPFIELDS_BU0 FOR PROPFIELDS ACTIVE
+BEFORE UPDATE POSITION 0
+AS
+begin
+  NEW.CHANGED = current_timestamp;
+end^
+SET TERM ; ^
+SET TERM ^ ;
+CREATE TRIGGER PROPTYPES_BU0 FOR PROPTYPES ACTIVE
+BEFORE UPDATE POSITION 0
+AS
+begin
+  NEW.CHANGED = CURRENT_TIMESTAMP;
+end^
+SET TERM ; ^
+
+UPDATE RDB$GENERATORS set
+  RDB$DESCRIPTION = 'for subjects - groups and users'
+  where RDB$GENERATOR_NAME = 'GEN_SOME_ID';
+UPDATE RDB$FIELDS set
+  RDB$DESCRIPTION = 'field name in defines of properties'
+  where RDB$FIELD_NAME = 'TFIELDCODE';
+UPDATE RDB$FIELDS set
+  RDB$DESCRIPTION = 'identifier'
+  where RDB$FIELD_NAME = 'TOID';
+UPDATE RDB$FIELDS set
+  RDB$DESCRIPTION = 'substitute key, primary'
+  where RDB$FIELD_NAME = 'TPKID';
+UPDATE RDB$FIELDS set
+  RDB$DESCRIPTION = 'a table''s name, contains field'
+  where RDB$FIELD_NAME = 'TREFFERCODE';
+UPDATE RDB$FIELDS set
+  RDB$DESCRIPTION = 'user id'
+  where RDB$FIELD_NAME = 'TUID';
+
+
+SET TERM ^ ;
+ALTER PROCEDURE GET_CHILDS (
+    NODEID INTEGER,
+    CLASSID INTEGER )
+RETURNS (
+    ID INTEGER,
+    NODE_LEVEL INTEGER )
+AS
+DECLARE variable NL INTEGER;
+begin
+    id = nodeid;
+    node_level = 0;
+    suspend;
+    
+    nl = node_level + 1;
+    for
+        select obid
+        from objects
+        where parentid = :nodeid
+          and (classid = :classid or :classid is null)
+          and obid <> :nodeid
+          and deleted=0
+        into :id
+    do
+    begin
+        for
+            select id, node_level + :nl
+            from get_childs (:id, :classid)
+            into :id, :node_level
+        do
+            suspend;
+    end
+end^
+SET TERM ; ^
+
+
+SET TERM ^ ;
+ALTER PROCEDURE GET_PARENTS (
+    NODEID INTEGER,
+    CLASSID INTEGER )
+RETURNS (
+    ID INTEGER,
+    NODE_LEVEL INTEGER )
+AS
+begin
+    id = nodeid;
+    node_level = 0;
+    suspend;
+    
+    --node_level = 1;
+    select parentid
+    from objects
+    where obid = :nodeid
+      and (classid = :classid or :classid is null)
+      and obid <> parentid
+      and deleted=0
+    into :id;
+    --suspend;
+    
+    if (id is not null and id <> -1) then
+    begin
+        for
+            select id
+            from get_parents (:id, :classid)
+            into :id
+        do begin
+            node_level = node_level + 1;
+            suspend;
+        end
+    end
+end^
+SET TERM ; ^
+
+
+SET TERM ^ ;
+ALTER PROCEDURE GET_PROPFIELDS (
+    CLASSID INTEGER )
+RETURNS (
+    FIELDID INTEGER,
+    OWNERID INTEGER,
+    FIELDNAME VARCHAR(40),
+    PRTABLE VARCHAR(40),
+    PRNAME VARCHAR(40),
+    TYPEID INTEGER,
+    TYPECODE VARCHAR(12),
+    DESCRIPT VARCHAR(255),
+    WIDTH INTEGER,
+    SCALE INTEGER,
+    FLAG INTEGER,
+    ENABLED SMALLINT,
+    PARENTLEVEL SMALLINT )
+AS
+declare variable FCOUNT smallint;
+begin
+  FCOUNT = 0;
+  PARENTLEVEL = -1;
+  while ( (:CLASSID > -1) or (:CLASSID = -10) ) do
+  begin
+    PARENTLEVEL = PARENTLEVEL + 1;
+    OWNERID = CLASSID;
+    for
+      select O.PARENTID, F.FIELDID, F.FIELDNAME,
+             coalesce(F.PRTABLE, 'PROPVAL_'||T.TYPECODE),
+             coalesce(F.PRNAME, F.FIELDNAME),
+             T.TYPEID, T.TYPECODE, F.DESCRIPT, F.WIDTH, F.SCALE,
+             F.FLAG, F.ENABLED
+      from OBJECTS O
+      left join PROPFIELDS F on F.CLASSID=O.OBID and F.ENABLED=1
+      left join PROPTYPES T on T.TYPEID=F.TYPEID
+      where O.OBID=:OWNERID
+      into :CLASSID, :FIELDID, :FIELDNAME, :PRTABLE, :PRNAME, :TYPEID,
+           :TYPECODE, :DESCRIPT, :WIDTH, :SCALE, :FLAG, :ENABLED
+    do
+    begin
+      if (FIELDID is not NULL) then
+      begin
+        suspend;
+        FCOUNT = FCOUNT + 1;
+      end
+    end
+    if (CLASSID=OWNERID) then CLASSID = -1;
+  end
+  if (FCOUNT=0) then suspend;
+end^
+SET TERM ; ^
+
+
+SET TERM ^ ;
+ALTER PROCEDURE LINKS_IU (
+    LINKTYPEID INTEGER,
+    LEFTID INTEGER,
+    RIGHTID INTEGER )
+RETURNS (
+    OUTRES SMALLINT )
+AS
+begin
+  if (exists(select LINKTYPEID,LEFTID,RIGHTID from LINKS where (LINKTYPEID = :LINKTYPEID) and (LEFTID = :LEFTID) and (RIGHTID = :RIGHTID))) then
+  begin
+    OUTRES = 0;
+  end
+  else
+  begin
+    insert into LINKS (
+        LINKTYPEID,
+        LEFTID,
+        RIGHTID)
+    values (
+        :LINKTYPEID,
+        :LEFTID,
+        :RIGHTID);
+    OUTRES = 1;
+  end
+  suspend;
+end^
+SET TERM ; ^
+
+
+SET TERM ^ ;
+ALTER PROCEDURE OBJECTS_IU (
+    OBID INTEGER,
+    CLASSID INTEGER,
+    PARENTID INTEGER,
+    CODE VARCHAR(12),
+    PROPID INTEGER,
+    NAME VARCHAR(192),
+    CREATORID INTEGER,
+    CHANGERID INTEGER )
+RETURNS (
+    OUTID INTEGER )
+AS
+begin
+  select OBID from OBJECTS where (OBID = :OBID) into :OUTID;
+  if (OUTID is not NULL) then
+    update OBJECTS
+    set CLASSID = :CLASSID,
+        PARENTID = :PARENTID,
+        CODE = :CODE,
+        PROPID = :PROPID,
+        NAME = :NAME,
+        CHANGERID = :CHANGERID
+    where (OBID = :OUTID);
+  else
+  begin
+    if (OBID=-1) then OUTID = gen_id(GEN_OBJECTS_ID, 1);
+    else OUTID = OBID;
+    insert into OBJECTS (
+        OBID,
+        CLASSID,
+        PARENTID,
+        CODE,
+        PROPID,
+        NAME,
+        CREATORID,
+        CHANGERID)
+    values (
+        :OUTID,
+        :CLASSID,
+        :PARENTID,
+        :CODE,
+        :PROPID,
+        :NAME,
+        :CREATORID,
+        :CREATORID);
+  end
+  suspend;
+end^
+SET TERM ; ^
+
+
+SET TERM ^ ;
+ALTER PROCEDURE PROPFIELDS_IU (
+    FIELDID INTEGER,
+    CLASSID INTEGER,
+    FIELDNAME VARCHAR(40),
+    PRTABLE VARCHAR(40),
+    PRNAME VARCHAR(40),
+    TYPEID INTEGER,
+    DESCRIPT VARCHAR(255),
+    WIDTH INTEGER,
+    SCALE INTEGER,
+    FLAG INTEGER,
+    ENABLED SMALLINT,
+    USERID INTEGER )
+RETURNS (
+    OUTID INTEGER )
+AS
+begin
+  if (exists(select FIELDID from PROPFIELDS where (FIELDID = :FIELDID))) then
+  begin
+    update PROPFIELDS
+    set CLASSID = :CLASSID,
+        FIELDNAME = :FIELDNAME,
+        PRTABLE = :PRTABLE,
+        PRNAME = :PRNAME,
+        TYPEID = :TYPEID,
+        DESCRIPT = :DESCRIPT,
+        WIDTH = :WIDTH, 
+        SCALE = :SCALE,
+        FLAG = :FLAG,
+        ENABLED = :ENABLED,
+        CHANGED = current_timestamp,
+        CHANGERID = :USERID
+    where (FIELDID = :FIELDID);
+    OUTID = FIELDID;
+  end
+  else
+  begin
+    OUTID = GEN_ID(GEN_PROPFIELD_ID,1);
+    insert into PROPFIELDS (
+        FIELDID,
+        CLASSID,
+        FIELDNAME,
+        PRTABLE,
+        PRNAME,
+        TYPEID,
+        DESCRIPT,
+        WIDTH, 
+        SCALE,
+        FLAG,
+        ENABLED,
+        CREATORID,
+        CHANGERID)
+    values (
+        :OUTID,
+        :CLASSID,
+        :FIELDNAME,
+        :PRTABLE,
+        :PRNAME,
+        :TYPEID,
+        :DESCRIPT,
+        :WIDTH,
+        :SCALE,
+        :FLAG,
+        :ENABLED,
+        :USERID,
+        :USERID);
+  end
+  suspend;
+end^
+SET TERM ; ^
+
+
+SET TERM ^ ;
+ALTER PROCEDURE PROPITEMS_IU (
+    SETID INTEGER,
+    VAL INTEGER,
+    NAME VARCHAR(64) )
+AS
+begin
+  if (exists(select SETID,VAL from PROPITEMS where (SETID = :SETID) and (VAL = :VAL))) then
+    update PROPITEMS
+    set NAME = :NAME
+    where (SETID = :SETID) and (VAL = :VAL);
+  else
+    insert into PROPITEMS (
+        SETID,
+        VAL,
+        NAME)
+    values (
+        :SETID,
+        :VAL,
+        :NAME);
+end^
+SET TERM ; ^
+
+SET TERM ^ ;
+ALTER PROCEDURE REQ_OBJECT_BY_CODE (
+    CLASSID INTEGER,
+    PARENTID INTEGER,
+    CODE VARCHAR(12),
+    NAME VARCHAR(192),
+    PROPID INTEGER,
+    CREATORID INTEGER,
+    CHANGERID INTEGER )
+RETURNS (
+    OUTID INTEGER )
+AS
+begin
+  select OBID from OBJECTS
+    where (CLASSID = :CLASSID)
+      and (CODE = :CODE)
+     into :OUTID;
+
+  if(OUTID is not NULL) then
+  begin
+    update OBJECTS
+    set CLASSID = :CLASSID,
+        PARENTID = :PARENTID,
+        CODE = :CODE,
+        NAME = :NAME,
+        PROPID = :PROPID,
+        CHANGERID = :CHANGERID
+    where (OBID = :OUTID);
+  end
+  else
+  begin
+    OUTID = gen_id(GEN_OBJECTS_ID,1);
+    insert into OBJECTS (
+        OBID,
+        CLASSID,
+        PARENTID,
+        CODE,
+        NAME,
+        PROPID,
+        CREATORID,
+        CHANGERID)
+    values (
+        :OUTID,
+        :CLASSID,
+        :PARENTID,
+        :CODE,
+        :NAME,
+        :PROPID,
+        :CREATORID,
+        :CHANGERID);
+    end
+    suspend;
+end^
+SET TERM ; ^
+
+
+SET TERM ^ ;
+ALTER PROCEDURE SET_PROPVAL_DBL (
+    OBID INTEGER,
+    FIELDID INTEGER,
+    VAL DOUBLE PRECISION,
+    USERID INTEGER )
+RETURNS (
+    OUTRES SMALLINT )
+AS
+begin
+  if (exists(select OBID, FIELDID from PROPVAL_DBL where OBID=:OBID and FIELDID=:FIELDID)) then
+  begin
+    update PROPVAL_DBL set
+        VAL = :VAL,
+        CHANGERID=:USERID
+    where OBID=:OBID and FIELDID=:FIELDID;
+    OUTRES = 2;
+  end
+  else
+  begin
+    insert into PROPVAL_DBL(
+      OBID,
+      FIELDID,
+      VAL,
+      CREATORID,
+      CHANGERID)
+    values (
+      :OBID,
+      :FIELDID,
+      :VAL,
+      :USERID,
+      :USERID);
+      OUTRES = 1;
+  end
+  suspend;
+end^
+SET TERM ; ^
+
+
+SET TERM ^ ;
+ALTER PROCEDURE SET_PROPVAL_INT (
+    OBID INTEGER,
+    FIELDID INTEGER,
+    VAL INTEGER,
+    USERID INTEGER )
+RETURNS (
+    OUTRES SMALLINT )
+AS
+begin
+  if (exists(select OBID,  FIELDID from PROPVAL_INT where OBID=:OBID and FIELDID=:FIELDID)) then
+  begin
+    update PROPVAL_INT set
+        VAL = :VAL,
+        CHANGERID=:USERID
+    where OBID=:OBID and FIELDID=:FIELDID;
+    OUTRES = 2;
+  end
+  else
+  begin
+    insert into PROPVAL_INT(
+      OBID,
+      FIELDID,
+      VAL,
+      CREATORID,
+      CHANGERID)
+    values (
+      :OBID,
+      :FIELDID,
+      :VAL,
+      :USERID,
+      :USERID);
+      OUTRES = 1;
+  end
+  suspend;
+end^
+SET TERM ; ^
+
+
+SET TERM ^ ;
+ALTER PROCEDURE SET_PROPVAL_PTR (
+    OBID INTEGER,
+    FIELDID INTEGER,
+    VAL INTEGER,
+    USERID INTEGER )
+RETURNS (
+    OUTRES SMALLINT )
+AS
+begin
+  if (exists(select OBID, FIELDID from PROPVAL_PTR where OBID=:OBID and FIELDID=:FIELDID)) then
+  begin
+    update PROPVAL_PTR set
+        VAL = :VAL,
+        CHANGERID=:USERID
+    where OBID=:OBID and FIELDID=:FIELDID;
+    OUTRES = 2;
+  end
+  else
+  begin
+    insert into PROPVAL_PTR(
+      OBID,
+      FIELDID,
+      VAL,
+      CREATORID,
+      CHANGERID)
+    values (
+      :OBID,
+      :FIELDID,
+      :VAL,
+      :USERID,
+      :USERID);
+      OUTRES = 1;
+  end
+  suspend;
+end^
+SET TERM ; ^
+
+
+SET TERM ^ ;
+ALTER PROCEDURE SET_PROPVAL_STR (
+    OBID INTEGER,
+    FIELDID INTEGER,
+    VAL VARCHAR(255),
+    USERID INTEGER )
+RETURNS (
+    OUTRES SMALLINT )
+AS
+begin
+  if (exists(select OBID, FIELDID from PROPVAL_STR where OBID=:OBID and FIELDID=:FIELDID)) then
+  begin
+    update PROPVAL_STR set
+        VAL = :VAL,
+        CHANGERID=:USERID
+    where OBID=:OBID and FIELDID=:FIELDID;
+    OUTRES = 2;
+  end
+  else
+  begin
+    insert into PROPVAL_STR(
+      OBID,
+      FIELDID,
+      VAL,
+      CREATORID,
+      CHANGERID)
+    values (
+      :OBID,
+      :FIELDID,
+      :VAL,
+      :USERID,
+      :USERID);
+      OUTRES = 1;
+  end
+  suspend;
+end^
+SET TERM ; ^
+
+
+SET TERM ^ ;
+ALTER PROCEDURE SET_PROPVAL_TIME (
+    OBID INTEGER,
+    FIELDID INTEGER,
+    VAL TIMESTAMP,
+    USERID INTEGER )
+RETURNS (
+    OUTRES SMALLINT )
+AS
+begin
+  if (exists(select OBID,  FIELDID from PROPVAL_TIME where OBID=:OBID and FIELDID=:FIELDID)) then
+  begin
+    update PROPVAL_TIME set
+        VAL = :VAL,
+        CHANGERID=:USERID
+    where OBID=:OBID and FIELDID=:FIELDID;
+    OUTRES = 2;
+  end
+  else
+  begin
+    insert into PROPVAL_TIME(
+      OBID,
+      FIELDID,
+      VAL,
+      CREATORID,
+      CHANGERID)
+    values (
+      :OBID,
+      :FIELDID,
+      :VAL,
+      :USERID,
+      :USERID);
+      OUTRES = 1;
+  end
+  suspend;
+end^
+SET TERM ; ^
+
+
+SET TERM ^ ;
+ALTER PROCEDURE SET_PROPVAL_TXT (
+    OBID INTEGER,
+    FIELDID INTEGER,
+    VAL BLOB SUB_TYPE 0,
+    USERID INTEGER )
+RETURNS (
+    OUTRES SMALLINT )
+AS
+begin
+  if (exists(select OBID, FIELDID from PROPVAL_TXT where OBID=:OBID and FIELDID=:FIELDID)) then
+  begin
+    update PROPVAL_TXT set
+        VAL = :VAL,
+        CHANGERID=:USERID
+    where OBID=:OBID and FIELDID=:FIELDID;
+    OUTRES = 2;
+  end
+  else
+  begin
+    insert into PROPVAL_TXT(
+      OBID,
+      FIELDID,
+      VAL,
+      CREATORID,
+      CHANGERID)
+    values (
+      :OBID,
+      :FIELDID,
+      :VAL,
+      :USERID,
+      :USERID);
+      OUTRES = 1;
+  end
+  suspend;
+end^
+SET TERM ; ^
+
+SET TERM ^ ;
+ALTER PROCEDURE TREE_OBJECTS (
+    ROOTID INTEGER,
+    INLEVEL INTEGER,
+    CLASSID INTEGER )
+RETURNS (
+    OBID INTEGER,
+    LVL INTEGER )
+AS
+declare variable VARID integer;
+begin
+    lvl = inlevel;
+    select obid
+    from objects
+    where obid = :rootid and deleted=0
+    into :obid;
+    suspend;
+    varid = obid;
+    for
+        select o.obid
+        from objects o
+        left join propval_int srt on srt.obid=o.obid and srt.fieldid=106
+        where o.parentid = :varid
+          and (o.classid = :classid or :classid is null)
+          and o.deleted=0
+        order by srt.val, o.obid
+        into :obid
+    do
+    begin
+        lvl = inlevel + 1;
+        for
+            select obid, lvl
+            from tree_objects (:obid, :lvl, :classid)
+            into :obid, :lvl
+        do
+            suspend;
+    end
+end^
+SET TERM ; ^
+
+
+SET TERM ^ ;
+ALTER PROCEDURE TREE_PARENTS (
+    ROOTID INTEGER,
+    INLEVEL INTEGER,
+    CLASSID INTEGER )
+RETURNS (
+    OBID INTEGER,
+    LVL INTEGER )
+AS
+declare variable PARENTID integer;
+begin
+    lvl = inlevel;
+    select obid
+    from objects
+    where obid = :rootid
+      and deleted=0
+    into :obid;
+    if (obid is null) then exit;
+    suspend;
+
+    select parentid
+    from objects
+    where obid = :obid
+      and (classid = :classid or :classid is null)
+      and obid<>parentid
+      and deleted=0
+    into :parentid;
+    if ( parentid is not null ) then
+    begin
+        lvl = inlevel + 1;
+        for
+            select obid, lvl
+            from tree_parents (:parentid, :lvl, :classid)
+            into :obid, :lvl
+        do suspend;
+    end
+end^
+SET TERM ; ^
+
+
+CREATE INDEX OBJECTS_IDX1 ON OBJECTS (CLASSID,CODE,PARENTID);
+CREATE INDEX OBJECTS_IDX2 ON OBJECTS (CLASSID,PROPID);
+CREATE INDEX OBJECTS_IDX3 ON OBJECTS (PARENTID);
+CREATE INDEX OBJECTS_IDX4 ON OBJECTS (DELETED);
+UPDATE RDB$RELATION_FIELDS set RDB$DESCRIPTION = 'field name in defines of properties'  where RDB$FIELD_NAME = 'FIELDNAME' and RDB$RELATION_NAME = 'PROPFIELDS';
+UPDATE RDB$RELATION_FIELDS set RDB$DESCRIPTION = 'a table''s name, contains field'  where RDB$FIELD_NAME = 'PRTABLE' and RDB$RELATION_NAME = 'PROPFIELDS';
+UPDATE RDB$RELATION_FIELDS set RDB$DESCRIPTION = 'field name in defines of properties'  where RDB$FIELD_NAME = 'PRNAME' and RDB$RELATION_NAME = 'PROPFIELDS';
+ALTER TABLE PROPFIELDS ADD CONSTRAINT FK_PROPFIELDS_CLASSID
+  FOREIGN KEY (CLASSID) REFERENCES OBJECTS (OBID);
+ALTER TABLE PROPFIELDS ADD CONSTRAINT FK_PROPFIELDS_TYPEID
+  FOREIGN KEY (TYPEID) REFERENCES PROPTYPES (TYPEID);
+CREATE INDEX PROPFIELDS_IDX1 ON PROPFIELDS (CLASSID,FIELDNAME,FIELDID);
+UPDATE RDB$RELATION_FIELDS set RDB$DESCRIPTION = 'substitute key, primary'  where RDB$FIELD_NAME = 'SETID' and RDB$RELATION_NAME = 'PROPITEMS';
+UPDATE RDB$RELATION_FIELDS set RDB$DESCRIPTION = 'substitute key, primary'  where RDB$FIELD_NAME = 'TYPEID' and RDB$RELATION_NAME = 'PROPTYPES';
+UPDATE RDB$RELATION_FIELDS set RDB$DESCRIPTION = 'user id'  where RDB$FIELD_NAME = 'CREATORID' and RDB$RELATION_NAME = 'PROPTYPES';
+UPDATE RDB$RELATION_FIELDS set RDB$DESCRIPTION = 'user id'  where RDB$FIELD_NAME = 'CHANGERID' and RDB$RELATION_NAME = 'PROPTYPES';
