@@ -1,0 +1,27 @@
+{
+	"name": "maestro675/maestro-framework",
+	"description": "...",
+	"homepage": "https://github.com/maestro675/maestro-framework",
+	"repositories": [
+		{
+			"type": "package",
+			"package": {
+				"name": "ivan1986/DbSimple",
+				"version": "1.0",
+				"source": {
+					"type": "git",
+					"url": "http://github.com/ivan1986/DbSimple",
+					"reference": "master"
+				},
+				"autoload": {
+					"classmap": ["lib/DbSimple"]
+				}
+			}
+		}
+	],
+	"require": {
+		"breerly/zf1": "dev-master",
+		"ivan1986/DbSimple": "1.0",
+		"symfony/yaml": "2.1.*@dev"
+	}
+}
